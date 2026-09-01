@@ -79,16 +79,18 @@ def doctor_dashboard(request):
 def get_doctors_by_city(request):
     city = request.GET.get('city')
 
-    doctors = Doctor.objects.filter(city__iexact=city)
+    doctors = Doctor.objects.filter(city__name__iexact=city)
 
     data = [
         {
             'id': doctor.id,
-            'name': doctor.user.get_full_name() or doctor.user.username,
+            'name': doctor.name,
             'specialization': doctor.specialization,
         }
         for doctor in doctors
     ]
+
+    return JsonResponse(data, safe=False)
 
 from .forms import DoctorProfileUpdateForm
 from django.contrib import messages
