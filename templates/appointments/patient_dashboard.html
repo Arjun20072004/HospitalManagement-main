@@ -239,12 +239,12 @@
                         <img src="{{ doctor.profile_image.url }}" alt="{{ doctor.name }}"
                             class="rounded-circle shadow-sm" style="width: 80px; height: 80px; object-fit: cover;">
                         {% else %}
-                        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed={{ doctor.user.username }}"
+                        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed={{ doctor.name }}"
                             alt="{{ doctor.name }}" class="rounded-circle shadow-sm"
                             style="width: 80px; height: 80px; object-fit: cover;">
                         {% endif %}
                     </div>
-                    <h5 class="fw-bold mb-1">Dr. {{ doctor.user.get_full_name|default:doctor.user.username }}</h5>
+                    <h5 class="fw-bold mb-1">Dr. {{ doctor.name }}</h5>
                     <p class="text-muted small mb-2">{{ doctor.specialization }}</p>
                     <p class="text-success fw-bold small mb-3">₹{{ doctor.consultation_fee }}</p>
                     <a href="{% url 'doctors:doctor_detail' doctor.pk %}"
