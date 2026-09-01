@@ -41,6 +41,31 @@ CSRF_TRUSTED_ORIGINS = [
     if origin.strip()
 ]
 
+# Security settings
+SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False").lower() == "true"
+
+# Session cookie settings
+SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "False").lower() == "true"
+
+# CSRF cookie settings
+CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "False").lower() == "true"
+
+# HTTP Strict Transport Security (HSTS) settings
+SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "0"))
+
+# Include subdomains in HSTS policy
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get(
+    "SECURE_HSTS_INCLUDE_SUBDOMAINS", "False"
+).lower() == "true"
+
+# Preload HSTS policy
+SECURE_HSTS_PRELOAD = os.environ.get(
+    "SECURE_HSTS_PRELOAD", "False"
+).lower() == "true"
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
